@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyCollision : MonoBehaviour
 {
+    [SerializeField] private float timeToShrink = 0.2f;
     IEnumerator OnTriggerEnter2D(Collider2D collisionInfo) {
         if(collisionInfo.gameObject.tag == "Puddle")
         {
@@ -14,10 +15,9 @@ public class EnemyCollision : MonoBehaviour
             }
             else 
             {
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(timeToShrink);
                 transform.localScale -= new Vector3(0.4f, 0.4f, 0);
             }
-            
         }
         else if(collisionInfo.gameObject.tag == "Fire")
         {

@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
         playerBody = this.GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -21,12 +20,8 @@ public class PlayerMovement : MonoBehaviour
     }
     
     void FixedUpdate() 
-    {
-        /*Vector2 currentPosition = new Vector2(
-            transform.position.x, 
-            transform.position.y); */   
+    { 
         playerBody.MovePosition(playerBody.position + movement * playerSpeed * Time.fixedDeltaTime);
-        
     }
 
 }

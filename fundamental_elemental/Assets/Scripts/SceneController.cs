@@ -4,27 +4,20 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
-    //[SerializeField] private GameObject enemyPrefab;
-    //public GameObject enemyPrefab;
-    //public float respawnTime = 4.0f;
     [SerializeField] private GameObject puddlePrefab;
     [SerializeField] private GameObject firePrefab;
-    //private GameObject enemy;
     private GameObject puddle;
     private GameObject fire;
-    private Collider2D puddleCollider;
-    private Collider2D fireCollider;
-
     public Transform borderLeft;
     public Transform borderRight;
     public Transform borderTop;
     public Transform borderBottom;
-
+    public GameOverScreen GameOverScreen;
 
     void Start() 
     {
-        InvokeRepeating("puddleSpawn",0, 10);
-        InvokeRepeating("fireSpawn",0, 10);
+        InvokeRepeating("puddleSpawn", 0, 10);
+        InvokeRepeating("fireSpawn", 0, 9);
     }
 
     void puddleSpawn()
@@ -34,7 +27,8 @@ public class SceneController : MonoBehaviour
 
         puddle = Instantiate(puddlePrefab) as GameObject;
         puddle.transform.position = new Vector2(x, y);
-        Destroy(puddle, 8);
+        
+        Destroy(puddle, 6);
     }
 
     void fireSpawn()
@@ -44,9 +38,13 @@ public class SceneController : MonoBehaviour
 
         fire = Instantiate(firePrefab) as GameObject;
         fire.transform.position = new Vector2(x, y);
-        fireCollider = fire.GetComponent<Collider2D>();
-        Debug.Log(fireCollider.isTrigger);
-        fireCollider.isTrigger = true;
+
         Destroy(fire, 10);
     }
+
+    public void GameOver()
+    {
+        GameOverScreen.Setup(10);
+    }
+
 }

@@ -15,15 +15,11 @@ public class EnemyMovement : MonoBehaviour
     {
         enemyBody = this.GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
-        //enemyBody = GetComponent<Rigidbody2D>();
-        //GameObject enemyGo = Instantiate(enemyPrefab) as GameObject;
-        //enemyGo.transform.position = new Vector3(3f,3f,1f); 
     }
 
     void Update()
     {   
         direction = (player.transform.position - transform.position).normalized;
-       
     }
 
     void FixedUpdate() 
