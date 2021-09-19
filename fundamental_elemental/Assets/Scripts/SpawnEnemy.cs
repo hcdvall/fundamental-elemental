@@ -5,11 +5,13 @@ using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public float respawnTime = 10.0f;
+    public float respawnTime = 5.0f;
     public Transform borderLeft;
     public Transform borderRight;
     public Transform borderTop;
     public Transform borderBottom;
+
+    public Vector3 fireLocation;
     
     void Start()
     {
@@ -25,7 +27,10 @@ public class SpawnEnemy : MonoBehaviour
             int y = (int)Random.Range(borderBottom.position.y, borderTop.position.y);
             
             GameObject a = Instantiate(enemyPrefab) as GameObject;
-            a.transform.position = new Vector3(x, y, 0);
+            fireLocation = GameObject.FindWithTag("Fire").transform.position;
+            //a.transform.position = new Vector3(x, y, 0);
+            a.transform.position = fireLocation;
         }
     }
+    
 }

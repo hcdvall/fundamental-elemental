@@ -16,12 +16,12 @@ public class EnemyCollision : MonoBehaviour
             else 
             {
                 yield return new WaitForSeconds(timeToShrink);
-                transform.localScale -= new Vector3(0.4f, 0.4f, 0);
+                transform.localScale -= new Vector3(0.2f, 0.2f, 0);
             }
         }
         else if(collisionInfo.gameObject.tag == "Fire")
         {
-            transform.localScale += new Vector3(0.4f, 0.4f, 0);     
+            transform.localScale += new Vector3(0.2f, 0.2f, 0);     
         }
         
     }

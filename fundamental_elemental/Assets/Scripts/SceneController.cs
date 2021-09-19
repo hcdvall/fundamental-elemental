@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
@@ -12,10 +13,11 @@ public class SceneController : MonoBehaviour
     public Transform borderRight;
     public Transform borderTop;
     public Transform borderBottom;
-    public GameOverScreen GameOverScreen;
+    //public GameOverScreen GameOverScreen;
 
     void Start() 
     {
+        //SceneManager.UnloadScene("MainMenu");
         InvokeRepeating("puddleSpawn", 0, 10);
         InvokeRepeating("fireSpawn", 0, 9);
     }
@@ -26,7 +28,7 @@ public class SceneController : MonoBehaviour
         int y = (int)Random.Range(borderBottom.position.y, borderTop.position.y);
 
         puddle = Instantiate(puddlePrefab) as GameObject;
-        puddle.transform.position = new Vector2(x, y);
+        puddle.transform.position = new Vector3(x, y, -1);
         
         Destroy(puddle, 6);
     }
@@ -37,14 +39,25 @@ public class SceneController : MonoBehaviour
         int y = (int)Random.Range(borderBottom.position.y, borderTop.position.y);
 
         fire = Instantiate(firePrefab) as GameObject;
-        fire.transform.position = new Vector2(x, y);
+        fire.transform.position = new Vector3(x, y, -1);
 
         Destroy(fire, 10);
     }
 
-    public void GameOver()
+    //public void GameOver()
+    //{
+        // GameOverScreen.Setup(10);
+    // }
+
+    public void restartGame()
     {
-        GameOverScreen.Setup(10);
+        SceneManager.LoadScene("InGame");
+    }
+
+    public void goToMainMenu()
+    {
+        SceneManager.LoadScene("InGame");
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
